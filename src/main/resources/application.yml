@@ -1,0 +1,4 @@
+spring:
+  dataSource:
+    url: jdbc:h2:mem:testdb
+
