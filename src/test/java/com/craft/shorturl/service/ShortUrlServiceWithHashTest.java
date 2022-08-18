@@ -43,19 +43,19 @@ public class ShortUrlServiceWithHashTest {
     void shouldCreateCustomUrl(){
         when(entityService.save(anyString(),anyString(),any())).thenReturn(true);
         String url = service.create(new Request("https://www.url.com/", "abcde"));
-        assertEquals("https://shortUrl/abcde", url);
+        assertEquals("abcde", url);
     }
 
     @Test
     void shouldGetUrlWhenItsPresentAndNotExpired(){
-        when(entityService.retrieveOriginalUrl("https://shortUrl/abcde")).thenReturn(Optional.of("https://www.url.com/"));
-        assertEquals("https://www.url.com/", service.get("https://shortUrl/abcde"));
+        when(entityService.retrieveOriginalUrl("abcde")).thenReturn(Optional.of("https://www.url.com/"));
+        assertEquals("https://www.url.com/", service.get("abcde"));
     }
 
     @Test
     void shouldThrowExceptionWhenNotFound(){
-        when(entityService.retrieveOriginalUrl("https://shortUrl/abcde")).thenReturn(Optional.empty());
-        assertThrows(URLNotFound.class, ()-> service.get("https://shortUrl/abcde"));
+        when(entityService.retrieveOriginalUrl("abcde")).thenReturn(Optional.empty());
+        assertThrows(URLNotFound.class, ()-> service.get("abcde"));
     }
 
 }

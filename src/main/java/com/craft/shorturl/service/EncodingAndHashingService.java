@@ -11,6 +11,11 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class EncodingAndHashingService {
 
+
+    // original url - > hashed MD5
+    // byte[] -> encoded
+    // encoded -> 20-30 characters
+    // Say 6 random characters
     public static String generateShortUrl(String url, String algorithm, int length)  {
         byte[] input = generateHash(url, algorithm);
         Base64.Encoder encoder = Base64.getEncoder();

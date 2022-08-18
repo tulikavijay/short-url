@@ -31,7 +31,7 @@ public class ShortUrlServiceWithHash implements ShortUrlService {
         String shortenedUrl = getShortenedUrl(request);
         if (!shortUrlEntityService.save(request.getOriginalUrl(), shortenedUrl, LocalDateTime.now().plusDays(OFFSET_DAYS)))
             throw new ErrorWhileSavingToDB("Could not save in the database.");
-        return shortenedUrl;
+        return  shortenedUrl;
     }
 
     @Override
@@ -44,9 +44,8 @@ public class ShortUrlServiceWithHash implements ShortUrlService {
 
     private String getShortenedUrl(Request request) {
         if (!ObjectUtils.isEmpty(request.getCustomUrl()))
-            return HTTPS_SHORT_URL + request.getCustomUrl();
+            return request.getCustomUrl();
         else
-            return HTTPS_SHORT_URL +
-                    generateShortUrl(request.getOriginalUrl(), MDS, SHORT_URL_LENGTH);
+            return generateShortUrl(request.getOriginalUrl(), MDS, SHORT_URL_LENGTH);
     }
 }

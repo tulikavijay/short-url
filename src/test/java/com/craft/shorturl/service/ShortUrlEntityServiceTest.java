@@ -27,18 +27,18 @@ class ShortUrlEntityServiceTest {
     @Test
     void shouldSaveDetails() {
         when(repository.save(any())).thenReturn(any());
-        assertTrue(shortUrlEntityService.save("https://url/", "https://shortUrl/abcde", LocalDateTime.now()));
+        assertTrue(shortUrlEntityService.save("https://url/", "abcde", LocalDateTime.now()));
     }
 
     @Test
     void shouldNotSaveInDBForIntegrityViolatiob() {
         when(repository.save(any())).thenThrow(DataIntegrityViolationException.class);
-        assertFalse(shortUrlEntityService.save("https://url/", "https://shortUrl/abcde", LocalDateTime.now()));
+        assertFalse(shortUrlEntityService.save("https://url/", "abcde", LocalDateTime.now()));
     }
 
     @Test
     void shouldNotSaveInDBForIllegalState() {
         when(repository.save(any())).thenThrow(IllegalStateException.class);
-        assertFalse(shortUrlEntityService.save("https://url/", "https://shortUrl/abcde", LocalDateTime.now()));
+        assertFalse(shortUrlEntityService.save("https://url/", "abcde", LocalDateTime.now()));
     }
 }

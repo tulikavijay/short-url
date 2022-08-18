@@ -13,8 +13,7 @@ import java.time.LocalDateTime;
 @Getter
 public class ShortUrlEntity {
     @Id
-    private String shortUrl;
-    @Column(unique = true)
+    private String shortUrl; //localhost:8089/hsjsj
     private String originalUrl;
     private LocalDateTime expiryDate;
 
